@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work & Projects — Pixels & Pines</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --forest: #2d4a2d;
+      --sage:   #6b8f71;
+      --sand:   #e8dcc8;
+      --ocean:  #3a7ca5;
+      --foam:   #f4f1eb;
+      --dark:   #1a1a1a;
+    }
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--foam);
+      color: var(--dark);
+      min-height: 100vh;
+      padding: 0 0 4rem;
+    }
+    nav {
+      background: var(--forest);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    nav a {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sand);
+      text-decoration: none;
+      border-bottom: 1px solid var(--sand);
+      padding-bottom: 2px;
+    }
+    nav a:hover { opacity: 0.7; }
+    .page-header {
+      background: var(--forest);
+      color: var(--foam);
+      text-align: center;
+      padding: 3rem 1.5rem 4rem;
+    }
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--sand);
+      margin-bottom: 0.75rem;
+    }
+    .page-header p {
+      font-size: 1.05rem;
+      color: rgba(244,241,235,0.8);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .content {
+      max-width: 860px;
+      margin: -2rem auto 0;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid var(--sand);
+    }
+    .card-header span { font-size: 1.5rem; }
+    .card-header h2 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--forest);
+    }
+    /* Project entry — richer than a plain link row */
+    .project-entry {
+      padding: 1.5rem 1.75rem;
+      border-bottom: 1px solid rgba(232,220,200,0.5);
+    }
+    .project-entry:last-child { border-bottom: none; }
+    .project-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--dark);
+    }
+    .project-desc {
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 0.85rem;
+    }
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--sage);
+      color: var(--forest);
+      transition: background 0.15s, color 0.15s;
+    }
+    .project-links a:hover {
+      background: var(--forest);
+      color: var(--sand);
+      border-color: var(--forest);
+    }
+    /* Simple link list (used for TODO sections) */
+    .link-list { list-style: none; }
+    .link-list li { border-bottom: 1px solid rgba(232,220,200,0.5); }
+    .link-list li:last-child { border-bottom: none; }
+    .link-list .placeholder {
+      padding: 1.25rem 1.75rem;
+      font-size: 0.92rem;
+      color: #999;
+      font-style: italic;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <nav><a href="index.html">← Back to Pixels &amp; Pines</a></nav>
+
+  <div class="page-header">
+    <h1>💻 Work &amp; Projects</h1>
+    <p>Professional experiences, side projects, and the code that keeps me up at night.</p>
+  </div>
+
+  <div class="content">
+
+    <!-- PERSONAL PROJECTS -->
+    <div class="card">
+      <div class="card-header">
+        <span>🛠️</span>
+        <h2>Personal Projects</h2>
+      </div>
+
+      <div class="project-entry">
+        <div class="project-title">WhatTheFed</div>
+        <div class="project-desc">
+          Exploring prediction models using market data and government reports as signals to analyze
+          previous and upcoming Fed meetings. Digs into how macroeconomic indicators move before and
+          after FOMC decisions.
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/calegeffre/WhatTheFed" target="_blank" rel="noopener">
+            ⌥ Repo
+          </a>
+          <a href="https://calegeffre.github.io/WhatTheFed/" target="_blank" rel="noopener">
+            ↗ Website
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MICROSOFT -->
+    <div class="card">
+      <div class="card-header">
+        <span>🪟</span>
+        <h2>Microsoft</h2>
+      </div>
+      <ul class="link-list">
+        <li><p class="placeholder">// TODO — add experience details</p></li>
+      </ul>
+    </div>
+
+    <!-- UNIVERSITY OF WISCONSIN-MADISON -->
+    <div class="card">
+      <div class="card-header">
+        <span>🦡</span>
+        <h2>University of Wisconsin–Madison</h2>
+      </div>
+      <ul class="link-list">
+        <li><p class="placeholder">// TODO — add coursework, research, or projects</p></li>
+      </ul>
+    </div>
+
+  </div><!-- /content -->
+</body>
+</html>
