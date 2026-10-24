@@ -8,6 +8,10 @@ visualization. Bubbles contain Teams and Mesh career notes and metrics from the
 resume; the objects illustrate related work rather than separate products built.
 Click or tap to keep a bubble open, and use its close button or Escape to dismiss
 it. Use **Reassemble**, or Escape with no bubble open, to return to the wordmark.
+Click the selected chapter or letter again to return to the full CAREER view,
+including preview chapters such as Treasury. The exhibit keeps its expanded
+dimensions across selections: its controls share a grid footprint sized to the
+largest chapter panel, and the mobile stage stays at its expanded height.
 
 Select the **A** for Mesh & Immersive Events. Its Microsoft Mesh icon links to
 the supplied YouTube video, and its HoloLens icon links to the Verge article
@@ -21,9 +25,15 @@ link remains available if embedding is restricted. The HoloLens node and its
 linked image card both use the supplied HoloLens photo.
 The supplied Mesh artwork and HoloLens image are hosted locally.
 
+Select the **second E** (05 / University of Wisconsin) for a Badgerloop tile using
+the supplied VR pod image. Hover, focus, or use the component button to preview
+the image card; the tile, card image, and text link open Badgerloop's
+"Virtual Reality" article on Medium. The image is hosted locally as
+`badgerloop-vr.png`.
+
 The chapter order is Teams, Mesh & Immersive Events, Treasury, Wisconsin Institute
-for Discovery, Wisconsin Education, and continued learning/resources/personal
-projects. C and A have exploded scenes; the remaining letters show chapter
+for Discovery, University of Wisconsin, and continued learning/resources/personal
+projects. C, A, and the second E have exploded scenes; the remaining letters show chapter
 previews. AI imagery represents AI integration, not model training.
 
 ## Preview
@@ -34,7 +44,7 @@ There are no build steps, external assets, runtime dependencies, or external
 network requests required for the scene. The block geometry uses CSS 3D
 transforms, with local SVG artwork and supplied images on the objects.
 YouTube is contacted only when a visitor starts the embedded video or follows
-its external link; the Verge is opened only through its links.
+its external link; the Verge and Medium are opened only through their links.
 
 `career.css` contains the visual design, and `career.js` contains the geometry,
 chapter data, and interaction. Component buttons provide a touch and keyboard

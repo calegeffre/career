@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="career-page">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,7 +33,7 @@
 
     <section class="exhibit" aria-label="Interactive 3D career model">
       <div class="exhibit-toolbar">
-        <p><span class="live-dot"></span><span id="scene-caption">THE ASSEMBLY / SELECT C OR A</span></p>
+        <p><span class="live-dot"></span><span id="scene-caption">THE ASSEMBLY / SELECT C, A OR SECOND E</span></p>
         <button class="reset-button" id="reset-view" type="button" hidden>Reassemble <span aria-hidden="true">&#8634;</span></button>
       </div>
       <div class="scene" id="scene" tabindex="-1">
@@ -70,11 +70,11 @@
         </aside>
         <div class="scene-corner corner-top" aria-hidden="true">FIG. 001<br />EXPERIENCE, DECONSTRUCTED</div>
         <div class="scene-corner corner-bottom" aria-hidden="true"><span class="axis">Y<br />&#9492;&#9472; X</span> BUILT FROM CONNECTIONS</div>
-        <div class="scene-hint" id="scene-hint"><span aria-hidden="true">+</span> Select C for Teams or A for Mesh</div>
+        <div class="scene-hint" id="scene-hint"><span aria-hidden="true">+</span> Explore C, A, or the second E</div>
       </div>
       <noscript><p class="notice">The 3D exploration needs JavaScript. You can still read the career summary below or visit <a href="work-and-projects.html">Work &amp; Projects</a>.</p></noscript>
       <p class="notice" id="scene-error" role="alert" hidden>The interactive scene could not start. Career details and the existing portfolio links remain available.</p>
-      <div class="scene-components" id="feature-panel" hidden>
+      <div class="scene-components" id="feature-panel" aria-hidden="true" inert>
         <div class="feature-tabs" id="feature-tabs" role="group" aria-label="Teams scene components"></div>
         <p class="illustration-note" id="scene-note">A conceptual view of my Teams &amp; Mesh work. Hover, focus, or tap a component for career stats and notes. Metrics are from my resume; objects illustrate the work, not individual products I built.</p>
       </div>
@@ -98,8 +98,8 @@
       <button type="button" class="chapter-button" data-chapter="3" aria-controls="chapter" aria-pressed="false">
         <span class="chapter-number">04 / E</span><span class="chapter-name">Wisconsin Institute for Discovery</span><span class="chapter-caption">Scene coming next</span>
       </button>
-      <button type="button" class="chapter-button" data-chapter="4" aria-controls="chapter" aria-pressed="false">
-        <span class="chapter-number">05 / E</span><span class="chapter-name">Wisconsin Education</span><span class="chapter-caption">Scene coming next</span>
+      <button type="button" class="chapter-button" data-chapter="4" aria-controls="scene chapter" aria-pressed="false">
+        <span class="chapter-number">05 / E <span class="available-dot" aria-label="Interactive scene available"></span></span><span class="chapter-name">University of Wisconsin</span><span class="chapter-caption">Badgerloop &amp; virtual reality</span>
       </button>
       <button type="button" class="chapter-button" data-chapter="5" aria-controls="chapter" aria-pressed="false">
         <span class="chapter-number">06 / R</span><span class="chapter-name">Still building</span><span class="chapter-caption">Learning, resources &amp; projects</span>

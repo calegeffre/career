@@ -8,6 +8,7 @@
   --mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
 }
 * { box-sizing: border-box; }
+.career-page { scrollbar-gutter: stable; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Segoe UI", Arial, sans-serif; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { font: inherit; }
@@ -119,7 +120,10 @@ h1 span { color: #858d86; }
 .assembly-symbol span:nth-child(3) { transform: translateY(-12px); background: #e78b65; box-shadow: -5px 5px #b86542; }
 .assembly-note > p:not(.eyebrow) { font-size: 21px; line-height: 1.55; letter-spacing: -.02em; margin: 0 0 22px; }
 .small-note { font: 10px var(--mono); color: var(--muted); }
-.scene-components { border-top: 1px solid #d6dcd2; padding: 16px 22px; }
+.scene-components { display: grid; visibility: hidden; border-top: 1px solid #d6dcd2; padding: 16px 22px; }
+.scene-components.is-active { visibility: visible; }
+.scene-controls { grid-area: 1 / 1; visibility: hidden; }
+.scene-components.is-active .scene-controls.is-active { visibility: visible; }
 .feature-tabs { display: flex; flex-wrap: wrap; gap: 7px; }
 .feature-tabs button { border: 1px solid #cbd2c9; background: transparent; border-radius: 3px; padding: 10px 12px; min-height: 42px; font: 10px var(--mono); color: var(--muted); cursor: pointer; }
 .feature-tabs button[aria-pressed="true"] { border-color: var(--ink); color: var(--paper); background: var(--ink); }
@@ -184,7 +188,7 @@ h1 span { color: #858d86; }
   .exhibit-toolbar { margin: 0 12px; height: 44px; }
   .exhibit-toolbar p { font-size: 7px; letter-spacing: .01em; gap: 5px; }
   .reset-button { font-size: 9px; }
-  .scene { height: 320px; }
+  .scene { height: 520px; }
   .scene-corner { font-size: 7px; }
   .corner-top { left: 13px; top: 14px; }
   .corner-bottom { left: 13px; bottom: 14px; font-size: 6px; gap: 8px; }
@@ -202,7 +206,6 @@ h1 span { color: #858d86; }
   .assembly-note { padding-left: 24px; }
   .feature-tabs button { min-height: 44px; padding: 10px 15px; }
   .scene-components { padding: 12px; }
-  .scene.is-open { height: 520px; }
   .scene.is-open .world { top: 42%; }
   .scene-bubble { padding: 10px 14px 14px; }
   .resource-grid { grid-template-columns: 1fr; margin-bottom: 30px; }

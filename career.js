@@ -19,8 +19,8 @@
       description: "A chapter at the Wisconsin Institute for Discovery. The story and its exploded 3D scene will be developed next.",
     },
     {
-      letter: "E", title: "Wisconsin Education", label: "Wisconsin Education",
-      description: "The University of Wisconsin-Madison chapter. Education details and a 3D view of this foundation are still to come.",
+      letter: "E", title: "University of Wisconsin", label: "University of Wisconsin",
+      description: "The University of Wisconsin-Madison chapter. Explore Badgerloop's virtual-reality pod experience and the student engineering behind it.",
     },
     {
       letter: "R", title: "Still learning. Still building.", label: "Continued learning, resources, and personal projects",
@@ -94,10 +94,30 @@
     },
   ];
 
-  const scenes = [
-    { label: "Teams", caption: "THE TEAMS CONNECTION LAYER", features: teamsFeatures },
-    { label: "Mesh & Immersive Events", caption: "MESH & IMMERSIVE EVENTS", features: meshFeatures },
+  const educationFeatures = [
+    {
+      id: "badgerloop", label: "Badgerloop", title: "Badgerloop: Virtual Reality",
+      x: 0, y: -55, z: 30, width: 240, height: 124, depth: 34, angle: 0,
+      href: "https://medium.com/@badgerloop/virtual-reality-8f73009cb1a8",
+      linkLabel: "Read Virtual Reality by Badgerloop on Medium",
+      image: "badgerloop-vr.png", imageAlt: "Badgerloop pod in a virtual environment with a VR headset and an interactive control panel",
+      description: "Student engineering in a new dimension. Take a look at the Badgerloop pod in virtual reality, and read the team's story about the experience on Medium.",
+    },
   ];
+
+  const scenes = {
+    0: { label: "Teams", caption: "THE TEAMS CONNECTION LAYER", features: teamsFeatures },
+    1: {
+      label: "Mesh & Immersive Events", caption: "MESH & IMMERSIVE EVENTS", features: meshFeatures,
+      hint: "Hover to explore / select an icon to visit its story",
+      note: "Mesh & Immersive Events. Hover or focus an icon for an image card; click to open its video or article. On touch, use a component button to preview its card.",
+    },
+    4: {
+      label: "University of Wisconsin", caption: "UNIVERSITY OF WISCONSIN", features: educationFeatures,
+      hint: "Hover to explore / select Badgerloop to read its story",
+      note: "University of Wisconsin / Badgerloop. Hover or focus the tile for an image card; click to read the team's Virtual Reality article. On touch, use the Badgerloop button to preview its card.",
+    },
+  };
 
   const scene = document.querySelector("#scene");
   const word = document.querySelector("#career-word");
@@ -105,7 +125,8 @@
   const chapterButtons = [...document.querySelectorAll("[data-chapter]")];
   const reset = document.querySelector("#reset-view");
   const status = document.querySelector("#interaction-status");
-  const featureTabs = document.querySelector("#feature-tabs");
+  const featurePanel = document.querySelector("#feature-panel");
+  const sceneControls = new Map();
   const chapterTitle = document.querySelector("#chapter-title");
   const chapterDescription = document.querySelector("#chapter-description");
   const chapterKicker = document.querySelector("#chapter-kicker");
@@ -161,17 +182,56 @@
           button.append(block);
         });
       });
-      button.addEventListener("click", () => selectChapter(index));
+      button.addEventListener("click", () => toggleChapter(index, button));
       word.append(button);
     });
   }
 
-  function buildFeatures(chapterScene) {
+  function buildSceneControls() {
+    featurePanel.replaceChildren();
+    for (const [index, chapterScene] of Object.entries(scenes)) {
+      const panel = document.createElement("div");
+      panel.className = "scene-controls";
+      panel.inert = true;
+      panel.setAttribute("aria-hidden", "true");
+      const tabs = document.createElement("div");
+      tabs.className = "feature-tabs";
+      tabs.setAttribute("role", "group");
+      tabs.setAttribute("aria-label", `${chapterScene.label} scene components`);
+      for (const feature of chapterScene.features) {
+        const tab = document.createElement("button");
+        tab.type = "button";
+        tab.textContent = feature.label;
+        tab.dataset.feature = feature.id;
+        tab.setAttribute("aria-pressed", "false");
+        connectFeatureControl(tab, feature.id);
+        tabs.append(tab);
+      }
+      const note = document.createElement("p");
+      note.className = "illustration-note";
+      note.textContent = chapterScene.note || teamsNote;
+      panel.append(tabs, note);
+      sceneControls.set(Number(index), panel);
+      featurePanel.append(panel);
+    }
+  }
+
+  function buildFeatures(chapterScene, index) {
     features = chapterScene.features;
     ecosystem.querySelectorAll(".node").forEach(node => node.remove());
-    featureTabs.replaceChildren();
+    for (const [chapterIndex, panel] of sceneControls) {
+      const selected = chapterIndex === index;
+      panel.classList.toggle("is-active", selected);
+      panel.inert = !selected;
+      panel.setAttribute("aria-hidden", String(!selected));
+      panel.querySelector(".feature-tabs").removeAttribute("id");
+      panel.querySelector(".illustration-note").removeAttribute("id");
+      if (selected) {
+        panel.querySelector(".feature-tabs").id = "feature-tabs";
+        panel.querySelector(".illustration-note").id = "scene-note";
+      }
+    }
     ecosystem.setAttribute("aria-label", `${chapterScene.label} scene`);
-    featureTabs.setAttribute("aria-label", `${chapterScene.label} scene components`);
     ecosystem.querySelector(".connections path").setAttribute("d",
       features.map(feature => `M500 280 L${500 + feature.x} ${280 + feature.y}`).join(" "));
     for (const feature of features) {
@@ -209,14 +269,6 @@
       connectFeatureControl(node, feature.id);
       node.addEventListener("transitionend", positionBubble);
       ecosystem.append(node);
-
-      const tab = document.createElement("button");
-      tab.type = "button";
-      tab.textContent = feature.label;
-      tab.dataset.feature = feature.id;
-      tab.setAttribute("aria-pressed", "false");
-      connectFeatureControl(tab, feature.id);
-      featureTabs.append(tab);
     }
   }
 
@@ -368,10 +420,21 @@
     word.inert = false;
     word.removeAttribute("aria-hidden");
     reset.hidden = true;
-    document.querySelector("#feature-panel").hidden = true;
+    featurePanel.classList.remove("is-active");
+    featurePanel.inert = true;
+    featurePanel.setAttribute("aria-hidden", "true");
     document.querySelector("#assembly-note").hidden = false;
-    document.querySelector("#scene-hint").innerHTML = '<span aria-hidden="true">+</span> Select C for Teams or A for Mesh';
-    document.querySelector("#scene-caption").textContent = "THE ASSEMBLY / SELECT C OR A";
+    document.querySelector("#scene-hint").innerHTML = '<span aria-hidden="true">+</span> Explore C, A, or the second E';
+    document.querySelector("#scene-caption").textContent = "THE ASSEMBLY / SELECT C, A OR SECOND E";
+  }
+
+  function toggleChapter(index, control) {
+    if (activeChapter === index) {
+      reassemble();
+      control.focus({ preventScroll: true });
+    } else {
+      selectChapter(index);
+    }
   }
 
   function selectChapter(index) {
@@ -395,20 +458,19 @@
     }
 
     if (chapterScene) {
-      buildFeatures(chapterScene);
+      buildFeatures(chapterScene, index);
       reset.hidden = false;
       if (chapterDetail.contains(document.activeElement)) reset.focus({ preventScroll: true });
       chapterDetail.hidden = true;
       document.querySelector(".skip-link").href = "#scene";
       document.querySelector(".skip-link").textContent = `Skip to ${chapterScene.label} visualization`;
       ecosystem.hidden = false;
-      document.querySelector("#feature-panel").hidden = false;
+      featurePanel.classList.add("is-active");
+      featurePanel.inert = false;
+      featurePanel.setAttribute("aria-hidden", "false");
       document.querySelector("#assembly-note").hidden = true;
       document.querySelector("#scene-caption").textContent = `${String(index + 1).padStart(2, "0")} / ${chapter.letter} / ${chapterScene.caption}`;
-      document.querySelector("#scene-hint").textContent = index === 1 ? "Hover to explore / select an icon to visit its story" : "Hover, focus, or tap a component to look inside";
-      document.querySelector("#scene-note").textContent = index === 1
-        ? "Mesh & Immersive Events. Hover or focus an icon for an image card; click to open its video or article. On touch, use a component button to preview its card."
-        : teamsNote;
+      document.querySelector("#scene-hint").textContent = chapterScene.hint || "Hover, focus, or tap a component to look inside";
       if (word.contains(document.activeElement)) reset.focus();
       // The fragments remain visible without exposing invisible letter controls.
       word.inert = true;
@@ -441,12 +503,13 @@
     chapterLink.target = "_blank";
     chapterLink.textContent = "Read the Mesh & Teams announcement";
     (word.children[previousChapter] || word.firstElementChild).focus({ preventScroll: true });
-    status.textContent = "CAREER reassembled. Select C for Teams or A for Mesh & Immersive Events.";
+    status.textContent = "CAREER reassembled. Select C for Teams, A for Mesh & Immersive Events, or the second E for University of Wisconsin.";
   }
 
   try {
+    buildSceneControls();
     buildLetters();
-    chapterButtons.forEach((button, index) => button.addEventListener("click", () => selectChapter(index)));
+    chapterButtons.forEach((button, index) => button.addEventListener("click", () => toggleChapter(index, button)));
     document.querySelector("#explore-teams").addEventListener("click", () => {
       selectChapter(0);
       reset.focus({ preventScroll: true });
