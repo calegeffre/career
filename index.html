@@ -1,235 +1,119 @@
-<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pixels & Pines</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --forest: #2d4a2d;
-      --sage:   #6b8f71;
-      --sand:   #e8dcc8;
-      --ocean:  #3a7ca5;
-      --foam:   #f4f1eb;
-      --dark:   #1a1a1a;
-    }
-
-    body {
-      font-family: 'Georgia', serif;
-      background: var(--foam);
-      color: var(--dark);
-    }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 600px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 40%;
-      filter: brightness(0.55);
-    }
-
-    .hero-content {
-      position: relative;
-      text-align: center;
-      color: #fff;
-      padding: 0 1.5rem;
-      max-width: 780px;
-    }
-
-    .hero-eyebrow {
-      font-family: 'Courier New', monospace;
-      font-size: 0.85rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--sand);
-      margin-bottom: 1rem;
-    }
-
-    .hero-title {
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-title span {
-      color: var(--sand);
-    }
-
-    .hero-tagline {
-      font-size: clamp(1rem, 2.2vw, 1.25rem);
-      line-height: 1.7;
-      color: rgba(255,255,255,0.88);
-      font-style: italic;
-    }
-
-    .hero-tagline em {
-      font-style: normal;
-      color: var(--sand);
-      font-weight: bold;
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      color: rgba(255,255,255,0.6);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      animation: bounce 2s infinite;
-    }
-
-    .scroll-hint svg { opacity: 0.6; }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(6px); }
-    }
-
-    /* ── ABOUT STRIP ── */
-    .about {
-      background: var(--forest);
-      color: var(--foam);
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-
-    .about h2 {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      margin-bottom: 1.5rem;
-      color: var(--sand);
-    }
-
-    .about p {
-      max-width: 680px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      line-height: 1.85;
-      color: rgba(244,241,235,0.88);
-    }
-
-    .about p strong {
-      color: var(--sand);
-    }
-
-    /* ── SECTION CARDS ── */
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 0;
-    }
-
-    .pillar {
-      padding: 4rem 2.5rem;
-      text-align: center;
-      border-right: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .pillar:last-child { border-right: none; }
-
-    .pillar:nth-child(1) { background: var(--sand); }
-    .pillar:nth-child(2) { background: var(--foam); }
-    .pillar:nth-child(3) { background: var(--sage); color: #fff; }
-
-    .pillar-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .pillar h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.75rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .pillar p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      opacity: 0.85;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--dark);
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.85rem;
-      font-family: 'Courier New', monospace;
-      letter-spacing: 0.05em;
-    }
-  </style>
+  <meta name="description" content="An interactive career in systems, immersive experiences, and the connections between them." />
+  <title>Career, taking shape</title>
+  <link rel="stylesheet" href="career.css" />
+  <script src="career.js" defer></script>
 </head>
 <body>
-
-  <!-- HERO -->
-  <section class="hero">
-    <img class="hero-img" src="SurfFall.jpg" alt="Wiping out on a wave — the learning never stops" />
-    <div class="hero-content">
-      <p class="hero-eyebrow">Welcome to</p>
-      <h1 class="hero-title">Pixels <span>&</span> Pines</h1>
-      <p class="hero-tagline">
-        A collection of my work experiences, personal projects, and ventures into the outdoors.
-        Across it all, I enjoy getting myself into many different hobbies,
-        <em>constantly failing and learning</em>,
-        and being a <em>jack of all trades and master of none</em>.
-      </p>
-    </div>
-    <div class="scroll-hint">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 5v14M5 12l7 7 7-7"/>
-      </svg>
-      scroll
-    </div>
-  </section>
-
-  <!-- TODO: Add "The Philosophy" about section -->
-
-  <!-- PILLARS -->
-  <div class="pillars">
-    <a class="pillar" href="work-and-projects.html" style="text-decoration:none; color:inherit; display:block;">
-      <div class="pillar-icon">💻</div>
-      <h3>Work &amp; Projects</h3>
-      <p>Professional experiences, side projects, and the code that keeps me up at night.</p>
+  <a class="skip-link" href="#chapter">Skip to career details</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Career home">
+      <span class="brand-mark" aria-hidden="true">c.</span>
+      <span>A CAREER IN SYSTEMS<span class="brand-subtitle">An ongoing assembly</span></span>
     </a>
-    <div class="pillar">
-      <div class="pillar-icon">🌲</div>
-      <h3>Outdoors</h3>
-      <p>Surf sessions, trail runs, and anything else that gets me away from a screen.</p>
-    </div>
-    <a class="pillar" href="educational-resources.html" style="text-decoration:none; color:inherit; display:block;">
-      <div class="pillar-icon">📚</div>
-      <h3>Educational Resources</h3>
-      <p>Curated links, videos, and flashcards to sharpen coding and interview skills.</p>
-    </a>
-  </div>
+    <nav aria-label="Main navigation">
+      <a href="work-and-projects.html">Work &amp; projects <span aria-hidden="true">&#8599;</span></a>
+      <a href="educational-resources.html">Resources <span aria-hidden="true">&#8599;</span></a>
+    </nav>
+  </header>
 
-  <footer>
-    © 2026 Pixels &amp; Pines — still learning, always will be.
+  <main>
+    <section class="introduction" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow"><span class="status-dot"></span> Software engineering / an interactive retrospective</p>
+        <h1 id="page-title">A career. <span>Taking shape.</span></h1>
+      </div>
+      <p class="intro-note">Every experience adds a new dimension.<br />Take a letter apart. See what connects.</p>
+    </section>
+
+    <section class="exhibit" aria-label="Interactive 3D career model">
+      <div class="exhibit-toolbar">
+        <p><span class="live-dot"></span><span id="scene-caption">THE ASSEMBLY / SELECT C TO BEGIN</span></p>
+        <button class="reset-button" id="reset-view" type="button" hidden>Reassemble <span aria-hidden="true">&#8634;</span></button>
+      </div>
+      <div class="scene" id="scene">
+        <div class="scene-grid" aria-hidden="true"></div>
+        <div class="scene-shadow" aria-hidden="true"></div>
+        <div class="world" id="world">
+          <div class="word" id="career-word" role="group" aria-label="Explore the letters of CAREER"></div>
+          <div class="ecosystem" id="ecosystem" role="group" aria-label="Teams communication tools" hidden>
+            <svg class="connections" viewBox="0 0 1000 560" aria-hidden="true">
+              <path d="M500 280 L240 195 M500 280 L745 150 M500 280 L245 410 M500 280 L735 405 M500 280 L500 90" />
+              <circle cx="500" cy="280" r="105" />
+              <circle cx="500" cy="280" r="170" />
+            </svg>
+          </div>
+        </div>
+        <div class="scene-corner corner-top" aria-hidden="true">FIG. 001<br />EXPERIENCE, DECONSTRUCTED</div>
+        <div class="scene-corner corner-bottom" aria-hidden="true"><span class="axis">Y<br />&#9492;&#9472; X</span> BUILT FROM CONNECTIONS</div>
+        <div class="scene-hint" id="scene-hint"><span aria-hidden="true">+</span> Click the orange C to look inside</div>
+      </div>
+      <noscript><p class="notice">The 3D exploration needs JavaScript. You can still read the career summary below or visit <a href="work-and-projects.html">Work &amp; Projects</a>.</p></noscript>
+      <p class="notice" id="scene-error" role="alert" hidden>The interactive scene could not start. Career details and the existing portfolio links remain available.</p>
+      <div class="exhibit-footer">
+        <p><span class="orange-line"></span> Six letters. Six perspectives.</p>
+        <span>Newest to oldest <span aria-hidden="true">&#8594;</span> then, what comes next</span>
+      </div>
+    </section>
+
+    <nav class="chapters" aria-label="Career chapters">
+      <button type="button" class="chapter-button" data-chapter="0" aria-controls="chapter" aria-pressed="false">
+        <span class="chapter-number">01 / C <span class="available-dot" aria-label="Interactive scene available"></span></span>
+        <span class="chapter-name">Teams</span><span class="chapter-caption">The connection layer</span>
+      </button>
+      <button type="button" class="chapter-button" data-chapter="1" aria-controls="chapter" aria-pressed="false">
+        <span class="chapter-number">02 / A</span><span class="chapter-name">Mesh &amp; Immersive Events</span><span class="chapter-caption">Scene coming next</span>
+      </button>
+      <button type="button" class="chapter-button" data-chapter="2" aria-controls="chapter" aria-pressed="false">
+        <span class="chapter-number">03 / R</span><span class="chapter-name">Treasury</span><span class="chapter-caption">Scene coming next</span>
+      </button>
+      <button type="button" class="chapter-button" data-chapter="3" aria-controls="chapter" aria-pressed="false">
+        <span class="chapter-number">04 / E</span><span class="chapter-name">Wisconsin Institute for Discovery</span><span class="chapter-caption">Scene coming next</span>
+      </button>
+      <button type="button" class="chapter-button" data-chapter="4" aria-controls="chapter" aria-pressed="false">
+        <span class="chapter-number">05 / E</span><span class="chapter-name">Wisconsin Education</span><span class="chapter-caption">Scene coming next</span>
+      </button>
+      <button type="button" class="chapter-button" data-chapter="5" aria-controls="chapter" aria-pressed="false">
+        <span class="chapter-number">06 / R</span><span class="chapter-name">Still building</span><span class="chapter-caption">Learning, resources &amp; projects</span>
+      </button>
+    </nav>
+
+    <section class="chapter-detail" id="chapter" aria-labelledby="chapter-title">
+      <div class="chapter-intro">
+        <p class="eyebrow" id="chapter-kicker">Inside the first letter</p>
+        <h2 id="chapter-title">Start with<br />a connection.</h2>
+        <p id="chapter-description">My work on Microsoft Teams integration connected immersive experiences with the tools people use to communicate. Open the C to explore a visual breakdown of those connections.</p>
+        <button class="primary-button" id="explore-teams" type="button">Explore the C <span aria-hidden="true">&#8599;</span></button>
+        <a class="text-link" id="chapter-link" href="https://www.microsoft.com/en-us/microsoft-365/blog/2024/01/24/bring-virtual-connections-to-life-with-microsoft-mesh-now-generally-available-in-microsoft-teams/" target="_blank" rel="noopener">Read the Mesh &amp; Teams announcement <span aria-hidden="true">&#8599;</span></a>
+      </div>
+      <div class="feature-panel" id="feature-panel" hidden>
+        <p class="eyebrow">Explore the components</p>
+        <div class="feature-tabs" id="feature-tabs" role="group" aria-label="Teams scene components"></div>
+        <div class="feature-copy" aria-live="polite" aria-atomic="true">
+          <span class="feature-index" id="feature-index">01 / 06</span>
+          <h3 id="feature-title">Microsoft Teams</h3>
+          <p id="feature-description"></p>
+        </div>
+        <p class="illustration-note">A conceptual exploded view. Communication tools and AI-model nodes illustrate the scene; career details describe my Teams integration work.</p>
+      </div>
+      <div class="assembly-note" id="assembly-note">
+        <div class="assembly-symbol" aria-hidden="true"><span></span><span></span><span></span></div>
+        <p class="eyebrow">Not just a timeline</p>
+        <p>A look inside the work.<br />The systems, the pieces,<br />and how they come together.</p>
+        <span class="small-note">First scene: Teams integration</span>
+      </div>
+    </section>
+    <p class="sr-only" id="interaction-status" role="status" aria-live="polite"></p>
+  </main>
+
+  <footer class="site-footer">
+    <span>A work in progress. By design.</span>
+    <a href="work-and-projects.html">Read the full work history <span aria-hidden="true">&#8599;</span></a>
+    <span>Still learning. Always building.</span>
   </footer>
-
 </body>
 </html>
