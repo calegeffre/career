@@ -3,130 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Educational Resources — Pixels & Pines</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --forest: #2d4a2d;
-      --sage:   #6b8f71;
-      --sand:   #e8dcc8;
-      --ocean:  #3a7ca5;
-      --foam:   #f4f1eb;
-      --dark:   #1a1a1a;
-    }
-    body {
-      font-family: 'Georgia', serif;
-      background: var(--foam);
-      color: var(--dark);
-      min-height: 100vh;
-      padding: 0 0 4rem;
-    }
-    nav {
-      background: var(--forest);
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    nav a {
-      font-family: 'Courier New', monospace;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--sand);
-      text-decoration: none;
-      border-bottom: 1px solid var(--sand);
-      padding-bottom: 2px;
-    }
-    nav a:hover { opacity: 0.7; }
-    .page-header {
-      background: var(--forest);
-      color: var(--foam);
-      text-align: center;
-      padding: 3rem 1.5rem 4rem;
-    }
-    .page-header h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      color: var(--sand);
-      margin-bottom: 0.75rem;
-    }
-    .page-header p {
-      font-size: 1.05rem;
-      color: rgba(244,241,235,0.8);
-      max-width: 520px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-    .content {
-      max-width: 860px;
-      margin: -2rem auto 0;
-      padding: 0 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      overflow: hidden;
-    }
-    .card-header {
-      padding: 1.25rem 1.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      border-bottom: 1px solid var(--sand);
-    }
-    .card-header span { font-size: 1.5rem; }
-    .card-header h2 {
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--forest);
-    }
-    .link-list { list-style: none; }
-    .link-list li {
-      border-bottom: 1px solid rgba(232,220,200,0.5);
-    }
-    .link-list li:last-child { border-bottom: none; }
-    .link-list a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.75rem;
-      text-decoration: none;
-      color: var(--dark);
-      font-size: 0.98rem;
-      transition: background 0.15s;
-    }
-    .link-list a:hover {
-      background: var(--foam);
-    }
-    .link-list a .link-label { font-weight: 600; }
-    .link-list a .link-meta {
-      font-size: 0.8rem;
-      font-family: 'Courier New', monospace;
-      color: var(--sage);
-      letter-spacing: 0.05em;
-    }
-    .link-list a .arrow { color: var(--sage); font-size: 0.9rem; }
-  </style>
+  <meta name="description" content="Curated coding practice, technology educators, strategy, and cybersecurity resources. Still learning. Always building." />
+  <title>Educational Resources — Career, taking shape</title>
+  <link rel="stylesheet" href="career.css" />
 </head>
 <body>
-  <nav><a href="index.html">← Back to Pixels &amp; Pines</a></nav>
-
-  <div class="page-header">
-    <h1>📚 Educational Resources</h1>
-    <p>Curated links, videos, and flashcards to sharpen coding and interview skills.</p>
-  </div>
-
-  <div class="content">
+  <a class="skip-link" href="#resources">Skip to resources</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Career home">
+      <span class="brand-mark" aria-hidden="true">c.</span>
+      <span>A CAREER IN SYSTEMS<span class="brand-subtitle">An ongoing assembly</span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Career <span aria-hidden="true">&#8599;</span></a>
+      <a href="educational-resources.html" aria-current="page">Educational Resources</a>
+      <a href="CaleGeffre_Resume_2026.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">&#8599;</span></a>
+    </nav>
+  </header>
+  <main class="resources-page">
+    <section class="introduction" aria-labelledby="page-title">
+      <h1 id="page-title">Educational Resources</h1>
+    </section>
+    <div class="resource-grid" id="resources">
 
     <!-- CODING INTERVIEW RESOURCES -->
     <div class="card">
       <div class="card-header">
-        <span>💻</span>
+        <span class="resource-number" aria-hidden="true">01 /</span>
         <h2>Coding Interview Resources</h2>
       </div>
       <ul class="link-list">
@@ -160,13 +63,19 @@
             <span class="link-meta">Quizlet &nbsp;↗</span>
           </a>
         </li>
+        <li>
+          <a href="https://www.aced.io/home" target="_blank" rel="noopener">
+            <span class="link-label">AI Mock Interviews</span>
+            <span class="link-meta">Aced &nbsp;&#8599;</span>
+          </a>
+        </li>
       </ul>
     </div>
 
     <!-- TECHNOLOGY EDUCATORS -->
     <div class="card">
       <div class="card-header">
-        <span>🧠</span>
+        <span class="resource-number" aria-hidden="true">02 /</span>
         <h2>Technology Educators</h2>
       </div>
       <ul class="link-list">
@@ -206,7 +115,7 @@
     <!-- BUSINESS AND TECH STRATEGY -->
     <div class="card">
       <div class="card-header">
-        <span>📈</span>
+        <span class="resource-number" aria-hidden="true">03 /</span>
         <h2>Business and Tech Strategy</h2>
       </div>
       <ul class="link-list">
@@ -228,7 +137,7 @@
     <!-- CYBERSECURITY -->
     <div class="card">
       <div class="card-header">
-        <span>🔐</span>
+        <span class="resource-number" aria-hidden="true">04 /</span>
         <h2>Cybersecurity</h2>
       </div>
       <ul class="link-list">
@@ -253,6 +162,12 @@
       </ul>
     </div>
 
-  </div><!-- /content -->
+    </div>
+  </main>
+  <footer class="site-footer">
+    <span>A work in progress. By design.</span>
+    <a href="index.html">Back to the career assembly <span aria-hidden="true">&#8599;</span></a>
+    <span>Still learning. Always building.</span>
+  </footer>
 </body>
 </html>

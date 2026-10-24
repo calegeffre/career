@@ -4,7 +4,7 @@
   const chapters = [
     {
       letter: "C", title: "Microsoft Teams integration", label: "Teams",
-      description: "My work on Microsoft Teams integration connected immersive experiences with the tools people use to communicate. Explore the communication tools, Teams hub, and illustrative AI-model nodes inside this connection layer.",
+      description: "My work spans Teams Intelligent Experiences and Microsoft Mesh: meeting ingestion, AI-assisted customization, authentication, and immersive content. Open a component for the individual career stats and notes.",
     },
     {
       letter: "A", title: "Mesh & Immersive Events", label: "Mesh & Immersive Events",
@@ -38,32 +38,38 @@
   const features = [
     {
       id: "teams", label: "Teams hub", title: "Microsoft Teams", x: 0, y: 0, z: 36, width: 126, height: 126, depth: 52, angle: 0,
-      description: "The central connection point. My Teams integration work sits at the intersection of immersive experiences and the familiar communication tools around them.",
+      stat: "~75% fewer setup steps",
+      description: "I shipped Teams UI for 3D environment customization across the Teams Immersive and Environment repos. Users and AI workflows can configure scenes directly from the Teams scheduling UI, enabling agent setup.",
       art: '<circle cx="103" cy="31" r="11" fill="#c1c2f3"/><path d="M90 49h28v30c0 19-28 19-28 0z" fill="#9092db"/><circle cx="77" cy="25" r="16" fill="#e0e0ff"/><path d="M54 49h42v43c0 29-42 29-42 0z" fill="#a8a9ed"/><rect x="13" y="39" width="56" height="56" rx="6" fill="#46488f"/><text x="41" y="80" text-anchor="middle" fill="white" font-size="39" font-family="Arial" font-weight="bold">T</text>',
     },
     {
       id: "video", label: "Video calls", title: "Face-to-face, from anywhere", x: -260, y: -85, z: 10, width: 166, height: 108, depth: 22, angle: 10,
-      description: "A 3D video-call display represents the face-to-face communication layer: people connecting across different places. It is a visual component of this scene, not a separate claim about video infrastructure I built.",
+      stat: "4 partner teams",
+      description: "In Teams Intelligent Experiences, I architect a capability that ingests recorded meetings from wearable and handheld devices into structured content for customer-facing AI experiences. I own backend ingestion and attribution orchestration, moving from proof of concept toward production.",
       art: '<rect x="5" y="5" width="156" height="98" rx="4" fill="#273e47"/><rect x="12" y="12" width="68" height="65" rx="4" fill="#c7d8ce"/><rect x="86" y="12" width="68" height="65" rx="4" fill="#b6b5db"/><circle cx="46" cy="35" r="12" fill="#9b624a"/><path d="M22 73q0-36 48 0" fill="#5d7c72"/><circle cx="120" cy="35" r="12" fill="#dfb594"/><path d="M96 73q0-36 48 0" fill="#7474a7"/><circle cx="62" cy="90" r="5" fill="#c8d4ce"/><rect x="76" y="85" width="24" height="10" rx="5" fill="#e27e62"/><circle cx="113" cy="90" r="5" fill="#c8d4ce"/>',
     },
     {
       id: "chat", label: "Chat & messages", title: "An ongoing conversation", x: 245, y: -130, z: 0, width: 142, height: 102, depth: 25, angle: -10,
-      description: "Layered message cards represent chat and collaboration: the conversations surrounding a shared experience. Select the scene's other objects to see how the pieces connect.",
+      stat: "50+ customer tenants",
+      description: "I built bring-your-own-content workflows connecting environments, images, 3D models, and artifacts from OneDrive, SharePoint, and GitHub. Use cases include factory walkthroughs and persistent team command centers. The message cards illustrate this collaboration, not chat infrastructure I built.",
       art: '<rect x="12" y="13" width="91" height="28" rx="8" fill="#d8e1d9"/><circle cx="27" cy="27" r="5" fill="#809b8b"/><path d="M40 24h49M40 31h32" stroke="#8eaa99" stroke-width="3"/><rect x="41" y="48" width="89" height="33" rx="8" fill="#6869ab"/><path d="M52 60h64M52 69h44" stroke="#dadbf5" stroke-width="3"/><path d="M115 80v10l-14-10" fill="#6869ab"/><circle cx="21" cy="65" r="4" fill="#c3cfc5"/><circle cx="21" cy="77" r="4" fill="#c3cfc5"/>',
     },
     {
       id: "voice", label: "Voice & audio", title: "Another dimension of presence", x: -255, y: 130, z: 12, width: 144, height: 77, depth: 30, angle: 8,
-      description: "A waveform turns audio into a tangible object. It represents voice as one of the ways people communicate alongside immersive content and environments.",
+      stat: "~50% less publish time",
+      description: "Audio is one piece of an immersive experience. I owned first-party 3D environment publishing end-to-end with art and design, standardizing Unity development, deployment, and validation across web, Windows, and Meta Quest. The waveform is illustrative, not a claim of voice infrastructure work.",
       art: '<rect x="9" y="9" width="126" height="59" rx="7" fill="#e8ede6"/><path d="M22 33v11M32 26v25M42 20v37M52 30v17M62 16v45M72 23v31M82 30v17M92 19v39M102 26v24M112 32v13M122 35v7" stroke="#658b7b" stroke-width="4" stroke-linecap="round"/>',
     },
     {
       id: "ai", label: "AI models", title: "A network of possibilities", x: 235, y: 125, z: 18, width: 116, height: 108, depth: 52, angle: -14,
-      description: "An illustrative neural graph, with connected layers standing in for AI models and AI-assisted communication. This object is conceptual; it does not imply that I trained or deployed a particular model.",
+      stat: "~85% less customization time",
+      description: "I led a team of 5 building MCP servers for Claude and GitHub Copilot, plus custom instructions for Teams Facilitator. The work won an internal innovation award and secured production funding. The graph represents AI integration, not model training.",
       art: '<g stroke="#8bbdad" stroke-width="1.2" opacity=".7"><path d="M22 29L58 18 94 35 58 52 22 29 58 86 94 72 58 52 58 18M22 29L94 72M22 75L58 52 94 35M22 75L58 86M58 18L22 75M58 86L94 35"/></g><g fill="#b6dbc6"><circle cx="22" cy="29" r="5"/><circle cx="22" cy="75" r="5"/><circle cx="58" cy="18" r="5"/><circle cx="58" cy="52" r="7"/><circle cx="58" cy="86" r="5"/><circle cx="94" cy="35" r="5"/><circle cx="94" cy="72" r="5"/></g><circle cx="58" cy="52" r="13" stroke="#d9a47a" fill="none"/>',
     },
     {
       id: "integration", label: "Integration", title: "Connecting the pieces", x: 0, y: -190, z: -16, width: 140, height: 64, depth: 26, angle: 0,
-      description: "The integration layer connects the scene. My work included Microsoft Teams integration as part of Mesh and immersive experiences, alongside authentication, customization, and customer-provided content.",
+      stat: "500K+ monthly active users",
+      description: "I architected React-based authentication across Avatars and Immersive Events, using telemetry-driven ring deployment to scale across 1,500+ tenants. Authentication and Teams integration connect the immersive experience to the tools people already use.",
       art: '<rect x="12" y="13" width="42" height="38" rx="5" fill="#d3dfd4"/><rect x="86" y="13" width="42" height="38" rx="5" fill="#d9d9ed"/><path d="M23 25l-5 7 5 7M42 25l5 7-5 7M31 23l-4 18" fill="none" stroke="#678a76" stroke-width="2"/><path d="M54 32h32M77 25l9 7-9 7" fill="none" stroke="#7378a7" stroke-width="2"/><circle cx="107" cy="32" r="9" fill="none" stroke="#7e81b5" stroke-width="2"/><circle cx="107" cy="32" r="3" fill="#7e81b5"/>',
     },
   ];
@@ -80,7 +86,14 @@
   const chapterKicker = document.querySelector("#chapter-kicker");
   const chapterLink = document.querySelector("#chapter-link");
   const announcementURL = chapterLink.href;
+  const bubble = document.querySelector("#scene-bubble");
+  const chapterDetail = document.querySelector("#chapter");
   let activeChapter = null;
+  let activeFeature = null;
+  let bubbleTrigger = null;
+  let bubblePinned = false;
+  let dismissingBubble = false;
+  let dismissTimer;
 
   function solid(className) {
     const element = document.createElement("span");
@@ -100,7 +113,7 @@
       button.type = "button";
       button.className = "letter";
       button.setAttribute("aria-label", `${chapter.letter}: ${chapter.label}${index ? " (scene planned)" : " - explore 3D scene"}`);
-      button.setAttribute("aria-controls", "chapter");
+      button.setAttribute("aria-controls", "scene chapter");
       button.setAttribute("aria-pressed", "false");
       button.style.setProperty("--letter-x", `${-418 + index * 148}px`);
       glyphs[chapter.letter].forEach((row, y) => {
@@ -140,7 +153,8 @@
       label.className = "node-label";
       label.textContent = feature.label.toUpperCase();
       node.append(block, label);
-      node.addEventListener("click", () => selectFeature(feature.id));
+      connectFeatureControl(node, feature.id);
+      node.addEventListener("transitionend", positionBubble);
       ecosystem.append(node);
 
       const tab = document.createElement("button");
@@ -148,22 +162,110 @@
       tab.textContent = feature.label;
       tab.dataset.feature = feature.id;
       tab.setAttribute("aria-pressed", "false");
-      tab.addEventListener("click", () => selectFeature(feature.id));
+      connectFeatureControl(tab, feature.id);
       featureTabs.append(tab);
     }
   }
 
-  function selectFeature(id) {
-    const feature = features.find(item => item.id === id);
-    document.querySelectorAll("[data-feature]").forEach(button => {
-      button.setAttribute("aria-pressed", String(button.dataset.feature === id));
+  function connectFeatureControl(control, id) {
+    control.setAttribute("aria-controls", "scene-bubble");
+    control.setAttribute("aria-expanded", "false");
+    control.addEventListener("pointerenter", event => {
+      if (event.pointerType !== "touch") selectFeature(id, control);
     });
-    document.querySelector("#feature-index").textContent = `${String(features.indexOf(feature) + 1).padStart(2, "0")} / 06`;
+    control.addEventListener("pointerleave", scheduleDismiss);
+    control.addEventListener("focus", () => {
+      if (!dismissingBubble) selectFeature(id, control);
+    });
+    control.addEventListener("blur", scheduleDismiss);
+    control.addEventListener("click", () => selectFeature(id, control, true));
+  }
+
+  function positionBubble() {
+    if (bubble.hidden || !activeFeature) return;
+    const bounds = scene.getBoundingClientRect();
+    const node = ecosystem.querySelector(`[data-feature="${activeFeature}"]`).getBoundingClientRect();
+    bubble.style.maxHeight = "";
+    const width = bubble.offsetWidth;
+    let height = bubble.offsetHeight;
+    const left = node.left - bounds.left;
+    const right = node.right - bounds.left;
+    const top = node.top - bounds.top;
+    const bottom = node.bottom - bounds.top;
+    const gap = 16;
+    let x;
+    let y;
+    if (right + gap + width <= bounds.width - 12) {
+      x = right + gap;
+      y = (top + bottom - height) / 2;
+    } else if (left - gap - width >= 12) {
+      x = left - gap - width;
+      y = (top + bottom - height) / 2;
+    } else {
+      x = (left + right - width) / 2;
+      const above = top > bounds.height - bottom;
+      const space = above ? top - gap - 12 : bounds.height - bottom - gap - 12;
+      bubble.style.maxHeight = `${Math.max(1, space)}px`;
+      height = bubble.offsetHeight;
+      y = above ? top - gap - height : bottom + gap;
+    }
+    bubble.style.left = `${Math.max(12, Math.min(x, scene.clientWidth - width - 12))}px`;
+    bubble.style.top = `${Math.max(12, Math.min(y, scene.clientHeight - height - 12))}px`;
+  }
+
+  function selectFeature(id, trigger, pinned = false) {
+    clearTimeout(dismissTimer);
+    if (activeChapter !== 0) return;
+    const feature = features.find(item => item.id === id);
+    bubblePinned = pinned || (activeFeature === id && bubblePinned);
+    activeFeature = id;
+    bubbleTrigger = trigger;
+    document.querySelectorAll("[data-feature]").forEach(button => {
+      const selected = button.dataset.feature === id;
+      button.setAttribute("aria-pressed", String(selected));
+      button.setAttribute("aria-expanded", String(selected));
+      if (selected) button.setAttribute("aria-describedby", "feature-stat feature-description");
+      else button.removeAttribute("aria-describedby");
+    });
+    document.querySelector("#feature-index").textContent = `${String(features.indexOf(feature) + 1).padStart(2, "0")} / ${feature.label.toUpperCase()}`;
+    document.querySelector("#feature-stat").textContent = feature.stat;
     document.querySelector("#feature-title").textContent = feature.title;
     document.querySelector("#feature-description").textContent = feature.description;
+    bubble.hidden = false;
+    positionBubble();
+  }
+
+  function hideBubble() {
+    clearTimeout(dismissTimer);
+    if (bubble.contains(document.activeElement) && bubbleTrigger) {
+      dismissingBubble = true;
+      bubbleTrigger.focus({ preventScroll: true });
+      dismissingBubble = false;
+    }
+    bubble.hidden = true;
+    activeFeature = null;
+    bubblePinned = false;
+    document.querySelectorAll("[data-feature]").forEach(button => {
+      button.setAttribute("aria-pressed", "false");
+      button.setAttribute("aria-expanded", "false");
+      button.removeAttribute("aria-describedby");
+    });
+  }
+
+  function scheduleDismiss() {
+    clearTimeout(dismissTimer);
+    dismissTimer = setTimeout(() => {
+      const focused = document.activeElement;
+      if (!bubblePinned && !bubble.matches(":hover") && !bubble.contains(focused) &&
+          !focused.matches("[data-feature]") && !document.querySelector("[data-feature]:hover")) hideBubble();
+    }, 180);
   }
 
   function closeScene() {
+    hideBubble();
+    chapterDetail.hidden = false;
+    document.querySelector(".skip-link").href = "#chapter";
+    document.querySelector(".skip-link").textContent = "Skip to career details";
     scene.classList.remove("is-open");
     ecosystem.hidden = true;
     word.inert = false;
@@ -196,18 +298,21 @@
 
     if (index === 0) {
       reset.hidden = false;
+      if (chapterDetail.contains(document.activeElement)) reset.focus({ preventScroll: true });
+      chapterDetail.hidden = true;
+      document.querySelector(".skip-link").href = "#scene";
+      document.querySelector(".skip-link").textContent = "Skip to Teams visualization";
       ecosystem.hidden = false;
       document.querySelector("#feature-panel").hidden = false;
       document.querySelector("#assembly-note").hidden = true;
       document.querySelector("#scene-caption").textContent = "01 / C / THE TEAMS CONNECTION LAYER";
-      document.querySelector("#scene-hint").textContent = "Select an object or a component below";
+      document.querySelector("#scene-hint").textContent = "Hover, focus, or tap a component to look inside";
       if (word.contains(document.activeElement)) reset.focus();
       // The fragments remain visible without exposing invisible letter controls.
       word.inert = true;
       word.setAttribute("aria-hidden", "true");
       scene.classList.add("is-open");
-      selectFeature("teams");
-      status.textContent = "C opened. Six Teams communication components are available in the scene and below.";
+      status.textContent = "C opened. Hover, focus, or tap any of the six components for Teams career stats and notes inside the scene.";
     } else {
       document.querySelector("#scene-caption").textContent = `${String(index + 1).padStart(2, "0")} / ${chapter.letter} / CHAPTER PREVIEW`;
       document.querySelector("#scene-hint").textContent = "Chapter details below / 3D scene planned";
@@ -245,14 +350,25 @@
       scene.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "center" });
     });
     reset.addEventListener("click", reassemble);
+    document.querySelector("#close-bubble").addEventListener("click", hideBubble);
+    bubble.addEventListener("pointerenter", () => clearTimeout(dismissTimer));
+    bubble.addEventListener("pointerleave", scheduleDismiss);
+    bubble.addEventListener("focusout", scheduleDismiss);
+    document.addEventListener("pointerdown", event => {
+      if (!bubble.hidden && !bubble.contains(event.target) && !event.target.closest("[data-feature]")) hideBubble();
+    });
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && activeChapter === 0) reassemble();
+      if (event.key === "Escape" && activeChapter === 0) {
+        if (!bubble.hidden) hideBubble();
+        else reassemble();
+      }
     });
     const resize = () => {
       const scale = Math.min((scene.clientWidth - 14) / 1000, (scene.clientHeight - 65) / 560, 1.3);
       const world = document.querySelector("#world");
       world.style.setProperty("--stage-scale", String(scale));
       world.style.setProperty("--word-scale", String(Math.min(1.45, scene.clientWidth / (1000 * scale) * .95)));
+      positionBubble();
     };
     new ResizeObserver(resize).observe(scene);
     resize();

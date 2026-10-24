@@ -17,7 +17,8 @@
     </a>
     <nav aria-label="Main navigation">
       <a href="work-and-projects.html">Work &amp; projects <span aria-hidden="true">&#8599;</span></a>
-      <a href="educational-resources.html">Resources <span aria-hidden="true">&#8599;</span></a>
+      <a href="educational-resources.html">Educational Resources <span aria-hidden="true">&#8599;</span></a>
+      <a href="CaleGeffre_Resume_2026.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">&#8599;</span></a>
     </nav>
   </header>
 
@@ -27,7 +28,7 @@
         <p class="eyebrow"><span class="status-dot"></span> Software engineering / an interactive retrospective</p>
         <h1 id="page-title">A career. <span>Taking shape.</span></h1>
       </div>
-      <p class="intro-note">Every experience adds a new dimension.<br />Take a letter apart. See what connects.</p>
+      <p class="intro-note">Every experience adds a new dimension. <br />Take a letter apart. See what connects.</p>
     </section>
 
     <section class="exhibit" aria-label="Interactive 3D career model">
@@ -35,7 +36,7 @@
         <p><span class="live-dot"></span><span id="scene-caption">THE ASSEMBLY / SELECT C TO BEGIN</span></p>
         <button class="reset-button" id="reset-view" type="button" hidden>Reassemble <span aria-hidden="true">&#8634;</span></button>
       </div>
-      <div class="scene" id="scene">
+      <div class="scene" id="scene" tabindex="-1">
         <div class="scene-grid" aria-hidden="true"></div>
         <div class="scene-shadow" aria-hidden="true"></div>
         <div class="world" id="world">
@@ -48,12 +49,26 @@
             </svg>
           </div>
         </div>
+        <aside class="scene-bubble" id="scene-bubble" aria-labelledby="feature-title" hidden>
+          <div class="bubble-heading">
+            <span class="feature-index" id="feature-index"></span>
+            <button class="bubble-close" id="close-bubble" type="button" aria-label="Dismiss component details">&#215;</button>
+          </div>
+          <p class="bubble-stat" id="feature-stat"></p>
+          <h3 id="feature-title"></h3>
+          <p class="bubble-description" id="feature-description"></p>
+          <a class="text-link" id="feature-link" href="CaleGeffre_Resume_2026.pdf" target="_blank" rel="noopener">More in my resume <span aria-hidden="true">&#8599;</span></a>
+        </aside>
         <div class="scene-corner corner-top" aria-hidden="true">FIG. 001<br />EXPERIENCE, DECONSTRUCTED</div>
         <div class="scene-corner corner-bottom" aria-hidden="true"><span class="axis">Y<br />&#9492;&#9472; X</span> BUILT FROM CONNECTIONS</div>
         <div class="scene-hint" id="scene-hint"><span aria-hidden="true">+</span> Click the orange C to look inside</div>
       </div>
       <noscript><p class="notice">The 3D exploration needs JavaScript. You can still read the career summary below or visit <a href="work-and-projects.html">Work &amp; Projects</a>.</p></noscript>
       <p class="notice" id="scene-error" role="alert" hidden>The interactive scene could not start. Career details and the existing portfolio links remain available.</p>
+      <div class="scene-components" id="feature-panel" hidden>
+        <div class="feature-tabs" id="feature-tabs" role="group" aria-label="Teams scene components"></div>
+        <p class="illustration-note">A conceptual view of my Teams &amp; Mesh work. Hover, focus, or tap a component for career stats and notes. Metrics are from my resume; objects illustrate the work, not individual products I built.</p>
+      </div>
       <div class="exhibit-footer">
         <p><span class="orange-line"></span> Six letters. Six perspectives.</p>
         <span>Newest to oldest <span aria-hidden="true">&#8594;</span> then, what comes next</span>
@@ -61,7 +76,7 @@
     </section>
 
     <nav class="chapters" aria-label="Career chapters">
-      <button type="button" class="chapter-button" data-chapter="0" aria-controls="chapter" aria-pressed="false">
+      <button type="button" class="chapter-button" data-chapter="0" aria-controls="scene chapter" aria-pressed="false">
         <span class="chapter-number">01 / C <span class="available-dot" aria-label="Interactive scene available"></span></span>
         <span class="chapter-name">Teams</span><span class="chapter-caption">The connection layer</span>
       </button>
@@ -89,16 +104,6 @@
         <p id="chapter-description">My work on Microsoft Teams integration connected immersive experiences with the tools people use to communicate. Open the C to explore a visual breakdown of those connections.</p>
         <button class="primary-button" id="explore-teams" type="button">Explore the C <span aria-hidden="true">&#8599;</span></button>
         <a class="text-link" id="chapter-link" href="https://www.microsoft.com/en-us/microsoft-365/blog/2024/01/24/bring-virtual-connections-to-life-with-microsoft-mesh-now-generally-available-in-microsoft-teams/" target="_blank" rel="noopener">Read the Mesh &amp; Teams announcement <span aria-hidden="true">&#8599;</span></a>
-      </div>
-      <div class="feature-panel" id="feature-panel" hidden>
-        <p class="eyebrow">Explore the components</p>
-        <div class="feature-tabs" id="feature-tabs" role="group" aria-label="Teams scene components"></div>
-        <div class="feature-copy" aria-live="polite" aria-atomic="true">
-          <span class="feature-index" id="feature-index">01 / 06</span>
-          <h3 id="feature-title">Microsoft Teams</h3>
-          <p id="feature-description"></p>
-        </div>
-        <p class="illustration-note">A conceptual exploded view. Communication tools and AI-model nodes illustrate the scene; career details describe my Teams integration work.</p>
       </div>
       <div class="assembly-note" id="assembly-note">
         <div class="assembly-symbol" aria-hidden="true"><span></span><span></span><span></span></div>
