@@ -33,7 +33,7 @@
 
     <section class="exhibit" aria-label="Interactive 3D career model">
       <div class="exhibit-toolbar">
-        <p><span class="live-dot"></span><span id="scene-caption">THE ASSEMBLY / SELECT C TO BEGIN</span></p>
+        <p><span class="live-dot"></span><span id="scene-caption">THE ASSEMBLY / SELECT C OR A</span></p>
         <button class="reset-button" id="reset-view" type="button" hidden>Reassemble <span aria-hidden="true">&#8634;</span></button>
       </div>
       <div class="scene" id="scene" tabindex="-1">
@@ -56,18 +56,27 @@
           </div>
           <p class="bubble-stat" id="feature-stat"></p>
           <h3 id="feature-title"></h3>
+          <div class="feature-media" id="feature-media" hidden>
+            <a id="feature-image-link" href="https://www.youtube.com/watch?v=_0InCXA13L8" target="_blank" rel="noopener">
+              <img id="feature-image" src="mesh-icon.png" alt="" width="600" height="338" />
+            </a>
+            <button class="video-play" id="feature-play" type="button" aria-label="Play Microsoft Mesh video inline" hidden>
+              <span aria-hidden="true">&#9654;</span> Play video
+            </button>
+            <div class="feature-video" id="feature-video" hidden></div>
+          </div>
           <p class="bubble-description" id="feature-description"></p>
           <a class="text-link" id="feature-link" href="CaleGeffre_Resume_2026.pdf" target="_blank" rel="noopener">More in my resume <span aria-hidden="true">&#8599;</span></a>
         </aside>
         <div class="scene-corner corner-top" aria-hidden="true">FIG. 001<br />EXPERIENCE, DECONSTRUCTED</div>
         <div class="scene-corner corner-bottom" aria-hidden="true"><span class="axis">Y<br />&#9492;&#9472; X</span> BUILT FROM CONNECTIONS</div>
-        <div class="scene-hint" id="scene-hint"><span aria-hidden="true">+</span> Click the orange C to look inside</div>
+        <div class="scene-hint" id="scene-hint"><span aria-hidden="true">+</span> Select C for Teams or A for Mesh</div>
       </div>
       <noscript><p class="notice">The 3D exploration needs JavaScript. You can still read the career summary below or visit <a href="work-and-projects.html">Work &amp; Projects</a>.</p></noscript>
       <p class="notice" id="scene-error" role="alert" hidden>The interactive scene could not start. Career details and the existing portfolio links remain available.</p>
       <div class="scene-components" id="feature-panel" hidden>
         <div class="feature-tabs" id="feature-tabs" role="group" aria-label="Teams scene components"></div>
-        <p class="illustration-note">A conceptual view of my Teams &amp; Mesh work. Hover, focus, or tap a component for career stats and notes. Metrics are from my resume; objects illustrate the work, not individual products I built.</p>
+        <p class="illustration-note" id="scene-note">A conceptual view of my Teams &amp; Mesh work. Hover, focus, or tap a component for career stats and notes. Metrics are from my resume; objects illustrate the work, not individual products I built.</p>
       </div>
       <div class="exhibit-footer">
         <p><span class="orange-line"></span> Six letters. Six perspectives.</p>
@@ -80,8 +89,8 @@
         <span class="chapter-number">01 / C <span class="available-dot" aria-label="Interactive scene available"></span></span>
         <span class="chapter-name">Teams</span><span class="chapter-caption">The connection layer</span>
       </button>
-      <button type="button" class="chapter-button" data-chapter="1" aria-controls="chapter" aria-pressed="false">
-        <span class="chapter-number">02 / A</span><span class="chapter-name">Mesh &amp; Immersive Events</span><span class="chapter-caption">Scene coming next</span>
+      <button type="button" class="chapter-button" data-chapter="1" aria-controls="scene chapter" aria-pressed="false">
+        <span class="chapter-number">02 / A <span class="available-dot" aria-label="Interactive scene available"></span></span><span class="chapter-name">Mesh &amp; Immersive Events</span><span class="chapter-caption">Shared spaces, new dimensions</span>
       </button>
       <button type="button" class="chapter-button" data-chapter="2" aria-controls="chapter" aria-pressed="false">
         <span class="chapter-number">03 / R</span><span class="chapter-name">Treasury</span><span class="chapter-caption">Scene coming next</span>

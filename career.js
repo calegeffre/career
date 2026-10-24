@@ -35,7 +35,7 @@
     E: ["11111", "11000", "11000", "11110", "11000", "11000", "11111"],
   };
 
-  const features = [
+  const teamsFeatures = [
     {
       id: "teams", label: "Teams hub", title: "Microsoft Teams", x: 0, y: 0, z: 36, width: 126, height: 126, depth: 52, angle: 0,
       stat: "~75% fewer setup steps",
@@ -74,6 +74,31 @@
     },
   ];
 
+  const meshFeatures = [
+    {
+      id: "mesh", label: "Microsoft Mesh", title: "Microsoft Mesh",
+      x: -210, y: -55, z: 32, width: 180, height: 135, depth: 34, angle: 8,
+      href: "https://www.youtube.com/watch?v=_0InCXA13L8",
+      videoId: "_0InCXA13L8",
+      linkLabel: "Watch Microsoft Mesh on YouTube",
+      image: "mesh-icon.png", imageAlt: "Microsoft Mesh purple sphere and ribbon icon",
+      description: "Shared spaces, beyond a screen. My Mesh and Immersive Events work spanned authentication, Teams integration, customization tools, and customer-provided 3D environments and content. Watch the Microsoft Mesh video for a look at the experience.",
+    },
+    {
+      id: "hololens", label: "HoloLens", title: "The mixed-reality connection",
+      x: 210, y: -55, z: 20, width: 190, height: 120, depth: 38, angle: -10,
+      href: "https://www.theverge.com/22308883/microsoft-mesh-virtual-reality-augmented-reality-hololens-vr-headsets-features",
+      linkLabel: "Read the HoloLens story on The Verge",
+      image: "mesh-hololens.png", imageAlt: "A HoloLens wearer collaborating with holographic people around a shared table",
+      description: "HoloLens brings shared digital content into physical space. The Verge explores the early Mesh vision: collaborating with holograms and avatars in shared spaces, and what that could mean for the future of Teams meetings.",
+    },
+  ];
+
+  const scenes = [
+    { label: "Teams", caption: "THE TEAMS CONNECTION LAYER", features: teamsFeatures },
+    { label: "Mesh & Immersive Events", caption: "MESH & IMMERSIVE EVENTS", features: meshFeatures },
+  ];
+
   const scene = document.querySelector("#scene");
   const word = document.querySelector("#career-word");
   const ecosystem = document.querySelector("#ecosystem");
@@ -88,6 +113,14 @@
   const announcementURL = chapterLink.href;
   const bubble = document.querySelector("#scene-bubble");
   const chapterDetail = document.querySelector("#chapter");
+  const featureMedia = document.querySelector("#feature-media");
+  const featureImage = document.querySelector("#feature-image");
+  const featureImageLink = document.querySelector("#feature-image-link");
+  const featurePlay = document.querySelector("#feature-play");
+  const featureVideo = document.querySelector("#feature-video");
+  const featureLink = document.querySelector("#feature-link");
+  const teamsNote = document.querySelector("#scene-note").textContent;
+  let features = [];
   let activeChapter = null;
   let activeFeature = null;
   let bubbleTrigger = null;
@@ -112,7 +145,7 @@
       const button = document.createElement("button");
       button.type = "button";
       button.className = "letter";
-      button.setAttribute("aria-label", `${chapter.letter}: ${chapter.label}${index ? " (scene planned)" : " - explore 3D scene"}`);
+      button.setAttribute("aria-label", `${chapter.letter}: ${chapter.label}${scenes[index] ? " - explore 3D scene" : " (scene planned)"}`);
       button.setAttribute("aria-controls", "scene chapter");
       button.setAttribute("aria-pressed", "false");
       button.style.setProperty("--letter-x", `${-418 + index * 148}px`);
@@ -133,22 +166,42 @@
     });
   }
 
-  function buildFeatures() {
+  function buildFeatures(chapterScene) {
+    features = chapterScene.features;
+    ecosystem.querySelectorAll(".node").forEach(node => node.remove());
+    featureTabs.replaceChildren();
+    ecosystem.setAttribute("aria-label", `${chapterScene.label} scene`);
+    featureTabs.setAttribute("aria-label", `${chapterScene.label} scene components`);
+    ecosystem.querySelector(".connections path").setAttribute("d",
+      features.map(feature => `M500 280 L${500 + feature.x} ${280 + feature.y}`).join(" "));
     for (const feature of features) {
-      const node = document.createElement("button");
-      node.type = "button";
+      const node = document.createElement(feature.href ? "a" : "button");
+      if (feature.href) {
+        node.href = feature.href;
+        node.target = "_blank";
+        node.rel = "noopener";
+      } else {
+        node.type = "button";
+        node.setAttribute("aria-pressed", "false");
+      }
       node.className = `node node-${feature.id}`;
       node.dataset.feature = feature.id;
-      node.setAttribute("aria-label", `Explore ${feature.label}`);
-      node.setAttribute("aria-pressed", "false");
+      node.setAttribute("aria-label", feature.linkLabel || `Explore ${feature.label}`);
       for (const [key, value] of Object.entries({
         w: feature.width, h: feature.height, d: feature.depth,
         nx: feature.x, ny: feature.y, nz: feature.z,
       })) node.style.setProperty(`--${key}`, `${value}px`);
       node.style.setProperty("--angle", `${feature.angle}deg`);
       const block = solid("device");
-      // All artwork is local, fixed SVG markup; no user content is inserted here.
-      block.querySelector(".front").innerHTML = `<svg viewBox="0 0 ${feature.width} ${feature.height}" xmlns="http://www.w3.org/2000/svg">${feature.art}</svg>`;
+      if (feature.art) {
+        // All artwork is local, fixed SVG markup; no user content is inserted here.
+        block.querySelector(".front").innerHTML = `<svg viewBox="0 0 ${feature.width} ${feature.height}" xmlns="http://www.w3.org/2000/svg">${feature.art}</svg>`;
+      } else {
+        const image = document.createElement("img");
+        image.src = feature.image;
+        image.alt = "";
+        block.querySelector(".front").append(image);
+      }
       const label = document.createElement("span");
       label.className = "node-label";
       label.textContent = feature.label.toUpperCase();
@@ -215,24 +268,66 @@
 
   function selectFeature(id, trigger, pinned = false) {
     clearTimeout(dismissTimer);
-    if (activeChapter !== 0) return;
+    if (!scenes[activeChapter]) return;
     const feature = features.find(item => item.id === id);
+    if (activeFeature !== id) {
+      stopVideo();
+      bubble.scrollTop = 0;
+    }
     bubblePinned = pinned || (activeFeature === id && bubblePinned);
     activeFeature = id;
     bubbleTrigger = trigger;
     document.querySelectorAll("[data-feature]").forEach(button => {
       const selected = button.dataset.feature === id;
-      button.setAttribute("aria-pressed", String(selected));
+      if (button.tagName === "BUTTON") button.setAttribute("aria-pressed", String(selected));
       button.setAttribute("aria-expanded", String(selected));
-      if (selected) button.setAttribute("aria-describedby", "feature-stat feature-description");
+      if (selected) button.setAttribute("aria-describedby", feature.stat ? "feature-stat feature-description" : "feature-description");
       else button.removeAttribute("aria-describedby");
     });
     document.querySelector("#feature-index").textContent = `${String(features.indexOf(feature) + 1).padStart(2, "0")} / ${feature.label.toUpperCase()}`;
-    document.querySelector("#feature-stat").textContent = feature.stat;
+    document.querySelector("#feature-stat").hidden = !feature.stat;
+    document.querySelector("#feature-stat").textContent = feature.stat || "";
     document.querySelector("#feature-title").textContent = feature.title;
     document.querySelector("#feature-description").textContent = feature.description;
+    featureLink.href = feature.href || "CaleGeffre_Resume_2026.pdf";
+    featureLink.textContent = `${feature.linkLabel || "More in my resume"} \u2197`;
+    featurePlay.hidden = !feature.videoId || !featureVideo.hidden;
+    featureMedia.hidden = !feature.image;
+    if (feature.image) {
+      featureImage.src = feature.image;
+      featureImage.alt = feature.imageAlt;
+      featureImageLink.href = feature.href;
+      featureImageLink.inert = Boolean(feature.videoId);
+    }
     bubble.hidden = false;
     positionBubble();
+  }
+
+  function playVideo() {
+    const feature = features.find(item => item.id === activeFeature);
+    if (!feature?.videoId) return;
+    clearTimeout(dismissTimer);
+    bubblePinned = true;
+    const player = document.createElement("iframe");
+    player.title = `${feature.title} video player`;
+    player.src = `https://www.youtube-nocookie.com/embed/${feature.videoId}?autoplay=1&playsinline=1&rel=0`;
+    player.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    player.allowFullscreen = true;
+    player.referrerPolicy = "strict-origin-when-cross-origin";
+    featureVideo.replaceChildren(player);
+    featureVideo.hidden = false;
+    featurePlay.hidden = true;
+    bubble.classList.add("is-playing");
+    positionBubble();
+    player.focus({ preventScroll: true });
+    featureVideo.scrollIntoView({ block: "nearest" });
+    status.textContent = "Microsoft Mesh video player opened inside the card. If playback is unavailable, use the Watch on YouTube link.";
+  }
+
+  function stopVideo() {
+    featureVideo.replaceChildren();
+    featureVideo.hidden = true;
+    bubble.classList.remove("is-playing");
   }
 
   function hideBubble() {
@@ -242,11 +337,12 @@
       bubbleTrigger.focus({ preventScroll: true });
       dismissingBubble = false;
     }
+    stopVideo();
     bubble.hidden = true;
     activeFeature = null;
     bubblePinned = false;
     document.querySelectorAll("[data-feature]").forEach(button => {
-      button.setAttribute("aria-pressed", "false");
+      if (button.tagName === "BUTTON") button.setAttribute("aria-pressed", "false");
       button.setAttribute("aria-expanded", "false");
       button.removeAttribute("aria-describedby");
     });
@@ -267,19 +363,21 @@
     document.querySelector(".skip-link").href = "#chapter";
     document.querySelector(".skip-link").textContent = "Skip to career details";
     scene.classList.remove("is-open");
+    [...word.children].forEach(letter => letter.classList.remove("is-exploded"));
     ecosystem.hidden = true;
     word.inert = false;
     word.removeAttribute("aria-hidden");
     reset.hidden = true;
     document.querySelector("#feature-panel").hidden = true;
     document.querySelector("#assembly-note").hidden = false;
-    document.querySelector("#scene-hint").innerHTML = '<span aria-hidden="true">+</span> Click the orange C to look inside';
-    document.querySelector("#scene-caption").textContent = "THE ASSEMBLY / SELECT C TO BEGIN";
+    document.querySelector("#scene-hint").innerHTML = '<span aria-hidden="true">+</span> Select C for Teams or A for Mesh';
+    document.querySelector("#scene-caption").textContent = "THE ASSEMBLY / SELECT C OR A";
   }
 
   function selectChapter(index) {
     activeChapter = index;
     const chapter = chapters[index];
+    const chapterScene = scenes[index];
     closeScene();
     chapterButtons.forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)));
     [...word.children].forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)));
@@ -287,7 +385,7 @@
     chapterDescription.textContent = chapter.description;
     chapterKicker.textContent = `${String(index + 1).padStart(2, "0")} / ${index === 0 ? "The connection layer" : index === 5 ? "The ongoing chapter" : "Career chapter - 3D scene planned"}`;
     const explore = document.querySelector("#explore-teams");
-    explore.hidden = index === 0;
+    explore.hidden = Boolean(chapterScene);
     chapterLink.hidden = index === 3 || index === 4;
     chapterLink.href = index === 5 ? "educational-resources.html" : index === 2 ? "work-and-projects.html" : announcementURL;
     chapterLink.target = index === 5 || index === 2 ? "_self" : "_blank";
@@ -296,23 +394,28 @@
       chapterDescription.textContent += " Personal projects are available through Work & Projects in the navigation.";
     }
 
-    if (index === 0) {
+    if (chapterScene) {
+      buildFeatures(chapterScene);
       reset.hidden = false;
       if (chapterDetail.contains(document.activeElement)) reset.focus({ preventScroll: true });
       chapterDetail.hidden = true;
       document.querySelector(".skip-link").href = "#scene";
-      document.querySelector(".skip-link").textContent = "Skip to Teams visualization";
+      document.querySelector(".skip-link").textContent = `Skip to ${chapterScene.label} visualization`;
       ecosystem.hidden = false;
       document.querySelector("#feature-panel").hidden = false;
       document.querySelector("#assembly-note").hidden = true;
-      document.querySelector("#scene-caption").textContent = "01 / C / THE TEAMS CONNECTION LAYER";
-      document.querySelector("#scene-hint").textContent = "Hover, focus, or tap a component to look inside";
+      document.querySelector("#scene-caption").textContent = `${String(index + 1).padStart(2, "0")} / ${chapter.letter} / ${chapterScene.caption}`;
+      document.querySelector("#scene-hint").textContent = index === 1 ? "Hover to explore / select an icon to visit its story" : "Hover, focus, or tap a component to look inside";
+      document.querySelector("#scene-note").textContent = index === 1
+        ? "Mesh & Immersive Events. Hover or focus an icon for an image card; click to open its video or article. On touch, use a component button to preview its card."
+        : teamsNote;
       if (word.contains(document.activeElement)) reset.focus();
       // The fragments remain visible without exposing invisible letter controls.
       word.inert = true;
       word.setAttribute("aria-hidden", "true");
+      word.children[index].classList.add("is-exploded");
       scene.classList.add("is-open");
-      status.textContent = "C opened. Hover, focus, or tap any of the six components for Teams career stats and notes inside the scene.";
+      status.textContent = `${chapter.letter} opened. ${features.length} ${chapterScene.label} components are available. Hover, focus, or use the component buttons to explore their cards inside the scene.`;
     } else {
       document.querySelector("#scene-caption").textContent = `${String(index + 1).padStart(2, "0")} / ${chapter.letter} / CHAPTER PREVIEW`;
       document.querySelector("#scene-hint").textContent = "Chapter details below / 3D scene planned";
@@ -321,6 +424,7 @@
   }
 
   function reassemble() {
+    const previousChapter = activeChapter;
     closeScene();
     activeChapter = null;
     chapterButtons.forEach(button => button.setAttribute("aria-pressed", "false"));
@@ -336,13 +440,12 @@
     chapterLink.href = announcementURL;
     chapterLink.target = "_blank";
     chapterLink.textContent = "Read the Mesh & Teams announcement";
-    word.firstElementChild.focus({ preventScroll: true });
-    status.textContent = "CAREER reassembled. Select C to explore Teams again.";
+    (word.children[previousChapter] || word.firstElementChild).focus({ preventScroll: true });
+    status.textContent = "CAREER reassembled. Select C for Teams or A for Mesh & Immersive Events.";
   }
 
   try {
     buildLetters();
-    buildFeatures();
     chapterButtons.forEach((button, index) => button.addEventListener("click", () => selectChapter(index)));
     document.querySelector("#explore-teams").addEventListener("click", () => {
       selectChapter(0);
@@ -351,6 +454,7 @@
     });
     reset.addEventListener("click", reassemble);
     document.querySelector("#close-bubble").addEventListener("click", hideBubble);
+    featurePlay.addEventListener("click", playVideo);
     bubble.addEventListener("pointerenter", () => clearTimeout(dismissTimer));
     bubble.addEventListener("pointerleave", scheduleDismiss);
     bubble.addEventListener("focusout", scheduleDismiss);
@@ -358,7 +462,7 @@
       if (!bubble.hidden && !bubble.contains(event.target) && !event.target.closest("[data-feature]")) hideBubble();
     });
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && activeChapter === 0) {
+      if (event.key === "Escape" && scenes[activeChapter]) {
         if (!bubble.hidden) hideBubble();
         else reassemble();
       }
